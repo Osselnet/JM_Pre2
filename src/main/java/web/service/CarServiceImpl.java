@@ -9,6 +9,12 @@ public class CarServiceImpl implements CarService{
 
     private List<Car> cars = new ArrayList<>();
 
+    public CarServiceImpl() {
+        addCar("Mitsubisi", 1, "Padgero");
+        addCar("Kia", 2, "Rio");
+        addCar("Lada", 3, "Granta");
+    }
+
     @Override
     public List<Car> getAllCars() {
         return cars;

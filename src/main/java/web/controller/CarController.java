@@ -12,16 +12,15 @@ import java.util.List;
 
 @Controller
 public class CarController {
-//    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     protected CarService carService;
 
-    @GetMapping(value = "/car")
+    @GetMapping(value = "/cars")
     public String printCars(ModelMap model) {
         List<String> messages = new ArrayList<>();
 
         for (Car car : carService.getAllCars()) {
-            messages.add(car.getName());
+            messages.add(car.getSeries() + " " + car.getBrand() + " " + car.getName());
         }
         model.addAttribute("messages", messages);
         return "cars";
