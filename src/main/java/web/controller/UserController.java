@@ -20,6 +20,13 @@ public class UserController {
     @Autowired
     protected UserService userService;
 
+    @GetMapping("/")
+    public String listPage(Model model) {
+        List<User> users = userService.getAllUser();
+        model.addAttribute("users", users);
+        return "index";
+    }
+
     @GetMapping("/signup")
     public String showSignUpForm(User user) {
         return "add-user";
