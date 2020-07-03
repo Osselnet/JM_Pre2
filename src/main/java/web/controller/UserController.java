@@ -23,12 +23,10 @@ public class UserController {
         return "index";
     }
 
-/*
     @GetMapping("/signup")
     public String showSignUpForm(User user) {
         return "add-user";
     }
-*/
 
     @PostMapping("/adduser")
     public String addUser(User user, BindingResult result, Model model) {
