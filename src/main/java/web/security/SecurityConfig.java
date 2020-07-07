@@ -34,12 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 // делаем страницу регистрации недоступной для авторизированных пользователей
                 .authorizeRequests()
-                //страницы аутентификаци доступна всем
-                .antMatchers("/login").anonymous()
                 // защищенные URL
                 .antMatchers("/admin").access("hasAnyRole('ADMIN')")
                 .antMatchers("/user").access("hasAnyRole('USER')")
-                .anyRequest().authenticated();
+                .anyRequest().authenticated()
+                //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
+                .and().csrf().disable();
         http.formLogin()
                 // указываем страницу с формой логина
                 .loginPage("/login")
@@ -58,9 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // указываем URL логаута
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 // указываем URL при удачном логауте
-                .logoutSuccessUrl("/login?logout")
-                //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
-                .and().csrf().disable();
+                .logoutSuccessUrl("/login?logout");
     }
 
     @Bean
