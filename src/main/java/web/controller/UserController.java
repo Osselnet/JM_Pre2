@@ -46,8 +46,8 @@ public class UserController extends HttpServlet {
 			return "add-user";
 		}
 		userService.addUser(user);
-		model.addAttribute("users", userService.getAllUser());
-		return "admin";
+		//model.addAttribute("users", userService.getAllUser());
+		return "redirect:/admin";
 	}
 
 	@GetMapping("/edit/{id}")
